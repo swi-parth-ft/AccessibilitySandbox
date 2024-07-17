@@ -26,24 +26,28 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Image(pictures[selectedPicture])
+            Image(decorative: "character")
                 .resizable()
                 .scaledToFit()
-                .onTapGesture {
-                    selectedPicture = Int.random(in: 0...3)
-                }
-                .accessibilityLabel(labels[selectedPicture])
-                .accessibilityAddTraits(.isButton)
-                .accessibilityRemoveTraits(.isImage)
+                .frame(height: 250)
             
-            Button {
-                selectedPicture = Int.random(in: 0...3)
-            } label: {
-                Image(pictures[selectedPicture])
-                    .resizable()
-                    .scaledToFit()
+            Image("ales-krivec-15949")
+                .accessibilityHidden(true)
+            
+            VStack {
+                Text("Your score is")
+                Text("1000")
+                    .font(.title)
             }
-            .accessibilityLabel(labels[selectedPicture])
+            .accessibilityElement(children: .combine)
+            
+            VStack {
+                Text("Your score is")
+                Text("1000")
+                    .font(.title)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Your score is 1000")
         }
     }
 }
